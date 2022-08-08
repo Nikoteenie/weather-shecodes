@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import WeatherInfo from "./WeatherInfo";
-import axios from "axios";
 
+import axios from "axios";
 import "./Weather.css";
 
 export default function Weather(props) {
@@ -11,18 +11,17 @@ export default function Weather(props) {
   function handleResponse(response) {
     setWeatherData({
       ready: true,
+      coordinates: response.data.coord,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       date: new Date(response.data.dt * 1000),
-     
-
       description: response.data.weather[0].description,
       icon: response.data.weather[0].icon,
-    wind: response.data.wind.speed,
+      wind: response.data.wind.speed,
       city: response.data.name,
     });
   }
-  
+
   function handleSubmit(event) {
     event.preventDefault();
     search();
@@ -32,12 +31,11 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
-function search() {
-  let apiKey = "b6520355a84f46a27e6fe4523cdc2546";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(handleResponse);
-}
-
+  function search() {
+    const apiKey = "e92a1ed89b00d3e00b6d789f4ff21ea9";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
 
   if (weatherData.ready) {
     return (
@@ -47,7 +45,7 @@ function search() {
             <div className="col-9">
               <input
                 type="search"
-                placeholder="Search a city... "
+                placeholder="Enter a city.."
                 className="form-control"
                 autoFocus="on"
                 onChange={handleCityChange}
@@ -62,10 +60,9 @@ function search() {
             </div>
           </div>
         </form>
-        
         <WeatherInfo data={weatherData} />
-
-     </div>
+       
+      </div>
     );
   } else {
     search();
