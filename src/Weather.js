@@ -36,7 +36,7 @@ export default function Weather(props) {
     axios.get(apiUrl).then(handleResponse);
   }
 
- 
+  if (weatherData.ready) {
     return (
       <div className="Weather">
         <form onSubmit={handleSubmit}>
@@ -63,5 +63,8 @@ export default function Weather(props) {
         <WeatherInfo data={weatherData} />
       </div>
     );
-
+  } else {
+    search();
+    return <div>Loading...</div>;
+  }
 }
