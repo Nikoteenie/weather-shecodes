@@ -57,4 +57,9 @@ margin-top: 20px 0 0 0;
   line-height: 1;
   line-height: 1;
   top: -34px;
+ 
+}
+
+.Weather .unit a {
+   text-decoration: none;
 }
