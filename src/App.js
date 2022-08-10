@@ -10,7 +10,12 @@ export default function App() {
         <Weather defaultCity="Miami" />
         <footer>
           This code is
-          <a href="https://github.com/Nikoteenie/weather-shecodes.git" alt="">
+          <a
+            href="https://github.com/Nikoteenie/weather-shecodes.git"
+            rel="noreferrer"
+            target="_blank"
+            alt=""
+          >
             {" "}
             open-sourced{" "}
           </a>
